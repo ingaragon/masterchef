@@ -6,7 +6,7 @@ class Receta {
     String nombre
     TipoComida tipoComida
     
-    static hasMany = [ingredientes: Ingrediente]
+    static hasMany = [ingredientes: Ingrediente, pasos: Paso]
     
     static constraints = {
     }

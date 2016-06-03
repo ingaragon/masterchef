@@ -5,10 +5,22 @@ import cocina.Receta
 import cocina.TipoComida
 import cocina.TipoIngrediente
 import cocina.TipoMedida
+import cocina.sec.Role
+import cocina.sec.Usuario
+import cocina.sec.UsuarioRole
 
 class BootStrap {
 
     def init = { servletContext ->
+        
+        if(!Usuario.findByUsername("admin")){
+            def usuario = new Usuario(username : "admin", password : "admin123.!", accountExpired : false, accountLocked : false, passwordExpired : false).save(flush : true, failOnError : true)
+            def rol01 = new Role(authority : "ROLE_ADMIN").save(flush : true, failOnError : true)
+            def rol02 = new Role(authority : "ROLE_USER").save(flush : true, failOnError : true)
+            def usRol01 = new UsuarioRole(usuario : usuario, role : rol01).save(flush : true, failOnError : true)
+            def usRol02 = new UsuarioRole(usuario : usuario, role : rol02).save(flush : true, failOnError : true)
+        }
+        
         def t01, t02, t03, t04, t05, t06, t07, t08, pa01, pa02, pa03, ca01, ca02, ca03, ca04, ca05, ca06, ca07, tc01 
         def ing01, ing02, ing03, ing04, ing05, ing06, ing07, ing08, receta 
         
@@ -103,6 +115,11 @@ class BootStrap {
             receta.addToIngredientes(ing06)
             receta.addToIngredientes(ing07)
             receta.addToIngredientes(ing08)
+            
+            receta.addToPasos(pa01)
+            receta.addToPasos(pa02)
+            receta.addToPasos(pa03)
+            
             receta.save(flush : true, failOnError : true)
         }
     }

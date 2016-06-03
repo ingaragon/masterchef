@@ -1,28 +1,31 @@
 package cocina
 
-
-
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import grails.plugin.springsecurity.annotation.Secured
 
 @Transactional(readOnly = true)
 class RecetaController {
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
+    @Secured(['ROLE_USER'])
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
         respond Receta.list(params), model:[recetaInstanceCount: Receta.count()]
     }
 
+    @Secured(['ROLE_USER'])
     def show(Receta recetaInstance) {
         respond recetaInstance
     }
 
+    @Secured(['ROLE_USER'])
     def create() {
         respond new Receta(params)
     }
 
+    @Secured(['ROLE_USER'])
     @Transactional
     def save(Receta recetaInstance) {
         if (recetaInstance == null) {
@@ -46,10 +49,12 @@ class RecetaController {
         }
     }
 
+    @Secured(['ROLE_USER'])
     def edit(Receta recetaInstance) {
         respond recetaInstance
     }
 
+    @Secured(['ROLE_USER'])
     @Transactional
     def update(Receta recetaInstance) {
         if (recetaInstance == null) {
@@ -73,6 +78,7 @@ class RecetaController {
         }
     }
 
+    @Secured(['ROLE_USER'])
     @Transactional
     def delete(Receta recetaInstance) {
 
