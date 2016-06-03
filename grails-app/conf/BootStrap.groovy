@@ -13,6 +13,9 @@ class BootStrap {
 
     def init = { servletContext ->
         
+        def t01, t02, t03, t04, t05, t06, t07, t08, pa01, pa02, pa03, ca01, ca02, ca03, ca04, ca05, ca06, ca07, tc01 
+        def ing01, ing02, ing03, ing04, ing05, ing06, ing07, ing08, receta 
+        
         if(!Usuario.findByUsername("admin")){
             def usuario = new Usuario(username : "admin", password : "admin123.!", accountExpired : false, accountLocked : false, passwordExpired : false).save(flush : true, failOnError : true)
             def rol01 = new Role(authority : "ROLE_ADMIN").save(flush : true, failOnError : true)
@@ -20,9 +23,6 @@ class BootStrap {
             def usRol01 = new UsuarioRole(usuario : usuario, role : rol01).save(flush : true, failOnError : true)
             def usRol02 = new UsuarioRole(usuario : usuario, role : rol02).save(flush : true, failOnError : true)
         }
-        
-        def t01, t02, t03, t04, t05, t06, t07, t08, pa01, pa02, pa03, ca01, ca02, ca03, ca04, ca05, ca06, ca07, tc01 
-        def ing01, ing02, ing03, ing04, ing05, ing06, ing07, ing08, receta 
         
         if(!TipoIngrediente.get(1)){
             t01 = new TipoIngrediente(nombre : "Alcachofa(s) grande(s)").save(flush : true, failOnError : true)
@@ -84,25 +84,25 @@ class BootStrap {
         if(!Ingrediente.get(1)){
             ing01 = new Ingrediente(tipoIngrediente : t01, tipoMedida : ca05, cantidad : 4.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(2)){
             ing02 = new Ingrediente(tipoIngrediente : t02, tipoMedida : ca01, cantidad : 1.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(3)){
             ing03 = new Ingrediente(tipoIngrediente : t03, tipoMedida : ca07, cantidad : 1.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(4)){
             ing04 = new Ingrediente(tipoIngrediente : t04, tipoMedida : ca04, cantidad : 1.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(5)){
             ing05 = new Ingrediente(tipoIngrediente : t05, tipoMedida : ca04, cantidad : 2.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(6)){
             ing06 = new Ingrediente(tipoIngrediente : t06, tipoMedida : ca04, cantidad : 2.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(7)){
             ing07 = new Ingrediente(tipoIngrediente : t07, tipoMedida : ca04, cantidad : 2.0).save(flush : true, failOnError : true)
         }
-        if(!Ingrediente.get(1)){
+        if(!Ingrediente.get(8)){
             ing08 = new Ingrediente(tipoIngrediente : t08, tipoMedida : ca05, cantidad : 1.0).save(flush : true, failOnError : true)
         }
         if(!Receta.get(1)){
